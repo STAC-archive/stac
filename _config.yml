@@ -1,43 +1,43 @@
 # =================================================================
-#  STAC – Einstellungen und Texte der Webseite
+#  STAC – Website settings and texts
 #
-#  Hier kannst du Texte und Einstellungen ändern, ohne Code anzufassen.
-#  Regeln:
-#   - Nur den Text NACH dem Doppelpunkt ändern.
-#   - Einrückungen (Leerzeichen am Zeilenanfang) genau so lassen.
-#   - Mehrzeilige Texte stehen eingerückt unter einem "|".
-#     Darin funktionieren Links so: [Linktext](https://adresse)
-#  Nach dem Speichern ("Commit changes") ist die Webseite nach
-#  etwa 1-2 Minuten aktualisiert.
+#  You can change texts and settings here without touching any code.
+#  Rules:
+#   - Only change the text AFTER the colon.
+#   - Keep the indentation (spaces at the start of a line) exactly as it is.
+#   - Multi-line texts are indented below a "|".
+#     Links inside them work like this: [link text](https://address)
+#  After saving ("Commit changes") the website is updated
+#  within about 1-2 minutes.
 # =================================================================
 
 title: "STAC – Scales and Tasks for Art and Creativity Assessment"
 description: "A free archive of scales and tasks for research on creativity, aesthetics, and the arts."
 
-# --- Ansichten auf der Seite "Measures" -------------------------
-# Mögliche Ansichten: folders (Ordner), list (Liste), grid (Kacheln)
-# Reihenfolge = Reihenfolge der Knöpfe
+# --- Views on the "Measures" page -------------------------------
+# Possible views: folders, list, grid (tiles)
+# Order here = order of the buttons
 views: [folders, list, grid]
 default_view: folders
 
-# --- Download-Zähler ---------------------------------------------
-# Name des GoatCounter-Kontos (der Teil vor .goatcounter.com).
-# Leer lassen ("") schaltet den Zähler aus.
+# --- Download counter --------------------------------------------
+# Name of the GoatCounter account (the part before .goatcounter.com).
+# Leaving it empty ("") switches the counter off.
 goatcounter: "stacarchive"
-# Bis zu welchem Datum die OSF-Downloads gezählt wurden
-# (die Zahlen selbst stehen in _data/osf_downloads.json)
+# Date up to which the OSF downloads were counted
+# (the numbers themselves are in _data/osf_downloads.json)
 osf_date: "17 November 2026"
 
-# --- Bereiche (Reihenfolge auf der Webseite) ---------------------
+# --- Sections (order on the website) ------------------------------
 sections:
   - Art and Aesthetics
   - Creativity
   - Personality and Individual Differences
 
-# --- Zitation von STAC (unten auf jeder Seite) -------------------
+# --- How to cite STAC (bottom of every page) ----------------------
 citation: "Kenett, Y. N., Silvia, P. J., & Benedek, M. (2026). Scales and Tasks for Art and Creativity Assessment (STAC). Psychological Test Adaptation and Development, 7, 239-244. https://doi.org/10.1027/2698-1866/a000140"
 
-# --- Der STAC-Artikel (kleiner Kasten auf "Welcome") -------------
+# --- The STAC article (small box on "Welcome") -------------------
 article:
   authors: "Yoed N. Kenett, Paul J. Silvia and Mathias Benedek"
   title: "Scales and Tasks for Art and Creativity Assessment (STAC)"
@@ -48,7 +48,7 @@ article:
 
 supported: "STAC is supported by Division 10 of the American Psychological Association (Psychology of Aesthetics, Creativity, and the Arts) and the Society for the Neuroscience of Creativity."
 
-# --- Texte auf der Seite "Welcome" -------------------------------
+# --- Texts on the "Welcome" page ---------------------------------
 welcome:
   - heading: "About this archive"
     text: |
@@ -70,7 +70,7 @@ welcome:
     text: |
       The archive was first created in 2013 by Paul Silvia. Mathias Benedek joined as moderator in 2018. In spring 2024, the archive underwent a major update initiated by Yoed Kenett and Mathias Benedek, and implemented by the helping hands of Rosalie Andrae, Noah Meinzer, Janika Saretzki. In 2026 an article was published by Yoed Kenett, Paul Silvia and Mathias Benedek to introduce the archive and further its spotlight. With the changes on the Open Science Framework (OSF), announced in 2026, the archive moved to Github with the help of Stefanie Schranz.
 
-# --- Texte auf der Seite "Contribute" ----------------------------
+# --- Texts on the "Contribute" page ------------------------------
 contribute:
   - heading: "Have a tool to add?"
     text: |
@@ -78,7 +78,7 @@ contribute:
 
       Each task or scale features various components, including language versions, computerized versions, norms, and more. Additionally, every folder contains a README (markdown file), listing all relevant information. To provide context for your measure such as scoring instructions or relevant references, please also submit a readme file (see the [README template](#tpl) below for information on its typical structure and content).
 
-# --- Kontakte (unten auf "Contribute") ---------------------------
+# --- Contacts (bottom of "Contribute") ---------------------------
 contacts:
   - name: "Yoed N. Kenett"
     place: "Technion - Israel Institute of Technology"
@@ -91,15 +91,15 @@ contacts:
     email: "mathias.benedek@uni-graz.at"
 
 # =================================================================
-#  Ab hier: technische Einstellungen. Bitte nicht ändern.
+#  Technical settings below. Please do not change.
 # =================================================================
 
-# Adresse der Webseite (stac-archive.github.io/stac)
+# Address of the website (stac-archive.github.io/stac)
 url: "https://stac-archive.github.io"
 baseurl: "/stac"
 
-# Jede README.md in einem Instrument-Ordner wird zu einer kleinen
-# Seite, aus der die Webseite den Beschreibungstext liest.
+# Every README.md in a measure folder becomes a small page
+# from which the website reads the description text.
 defaults:
   - scope:
       path: "Art and Aesthetics"
@@ -114,8 +114,8 @@ defaults:
     values:
       layout: readme
 
-# Diese Dateien sind nur für GitHub gedacht, nicht für die Webseite
+# These files are meant for GitHub only, not for the website
 exclude:
   - README.md
-  - ANLEITUNG.md
+  - MAINTENANCE.md
   - README_Template.md

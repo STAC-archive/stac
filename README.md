@@ -26,4 +26,4 @@ Kenett, Y. N., Silvia, P. J., & Benedek, M. (2026). Scales and Tasks for Art and
 
 ---
 
-Maintainers: see [ANLEITUNG.md](ANLEITUNG.md) (German) for how to update the archive and the website.
+Maintainers: see [MAINTENANCE.md](MAINTENANCE.md) for how to update the archive and the website.
