@@ -1,0 +1,86 @@
+---
+layout: null
+---
+{%- comment -%}
+  Startseite der Webseite. GitHub füllt beim Veröffentlichen automatisch
+  die Daten aus allen READMEs ein (Teil "STAC_DATA" unten).
+  Texte und Einstellungen bitte in _config.yml ändern, nicht hier.
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ site.title }}</title>
+<meta name="description" content="{{ site.description }}">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+
+<nav class="topbar" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#welcome"><span class="brand-short">STAC:</span> <span class="brand-long">Scales and Tasks for Art and Creativity Assessment</span></a>
+    <ul class="tabs">
+      <li><a href="#welcome" data-tab="welcome">Welcome</a></li>
+      <li><a href="#measures" data-tab="measures">Measures</a></li>
+      <li><a href="#contribute" data-tab="contribute">Contribute</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap footer">
+  <h2>How to cite STAC</h2>
+  <p id="citeText"></p>
+  <div class="copy-row"><button class="btn secondary" id="copyCite" type="button">Copy citation</button><span id="copied" role="status"></span></div>
+</footer>
+<script>
+window.STAC_SITE = {
+  base: {{ site.baseurl | default: "" | jsonify }},
+  views: {{ site.views | jsonify }},
+  defaultView: {{ site.default_view | jsonify }},
+  goatcounter: {{ site.goatcounter | jsonify }},
+  osfDate: {{ site.osf_date | jsonify }},
+  sections: {{ site.sections | jsonify }},
+  citation: {{ site.citation | jsonify }},
+  article: {{ site.article | jsonify }},
+  supported: {{ site.supported | jsonify }},
+  welcomeSections: [{% for s in site.welcome %}{"heading": {{ s.heading | jsonify }}, "html": {{ s.text | markdownify | jsonify | replace: "</", "<\/" }}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  contributeSections: [{% for s in site.contribute %}{"heading": {{ s.heading | jsonify }}, "html": {{ s.text | markdownify | jsonify | replace: "</", "<\/" }}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  contact: { people: {{ site.contacts | jsonify }} },
+  repo: {{ site.github.repository_url | jsonify }},
+  templateUrl: {% if site.github.repository_nwo %}"https://raw.githubusercontent.com/{{ site.github.repository_nwo }}/{{ site.github.source.branch | default: 'main' }}/README_Template.md"{% else %}null{% endif %},
+  preview: false
+};
+window.STAC_DATA = [
+{%- assign readmes = site.pages | where: "name", "README.md" -%}
+{%- assign first = true -%}
+{%- for p in readmes -%}
+  {%- assign parts = p.path | split: "/" -%}
+  {%- if parts.size > 2 and site.sections contains parts[0] -%}
+    {%- assign n = parts.size | minus: 2 -%}
+    {%- assign folder = p.path | remove_first: "/README.md" -%}
+    {%- assign prefix = "/" | append: folder | append: "/" -%}
+    {%- unless first %},{% endunless -%}
+    {%- assign first = false %}
+  {"id": {{ parts[n] | slugify: "latin" | jsonify }}, "path": {{ folder | jsonify }}, "url": {{ p.url | relative_url | jsonify }},
+   "title": {{ p.title | jsonify }}, "acronym": {{ p.acronym | jsonify }}, "section": {{ p.section | jsonify }}, "subsection": {{ p.subsection | jsonify }},
+   "languages": {{ p.languages | jsonify }}, "osf": {{ site.data.osf_downloads[folder] | default: 0 }},
+   "text": {{ p.content | strip_html | normalize_whitespace | jsonify | replace: "</", "<\/" }},
+   "files": [
+    {%- assign fn = 0 -%}
+    {%- for f in site.static_files -%}
+      {%- if f.path contains prefix -%}
+        {%- if fn > 0 %},{% endif -%}
+        {%- assign fn = fn | plus: 1 -%}
+        {"name": {{ f.name | jsonify }}, "path": {{ f.path | jsonify }}, "ext": {{ f.extname | jsonify }}}
+      {%- endif -%}
+    {%- endfor -%}]}
+  {%- endif -%}
+{%- endfor %}
+];
+</script>
+<script src="{{ '/assets/app.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+---
+---
+{%- comment -%}
+  Kleine Seite pro README. Die Webseite liest daraus den Beschreibungstext.
+  Wer diese Seite direkt öffnet, wird zur richtigen Stelle der Webseite weitergeleitet.
+{%- endcomment -%}
+{%- assign parts = page.path | split: "/" -%}
+{%- assign n = parts.size | minus: 2 -%}
+{%- assign id = parts[n] | slugify: "latin" -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ page.title }} – STAC</title>
+<link rel="canonical" href="{{ '/' | absolute_url }}#{{ id }}">
+<script>location.replace("{{ '/' | relative_url }}#{{ id }}");</script>
+</head>
+<body>
+<main id="readme-content">
+{{ content }}
+</main>
+<p><a href="{{ '/' | relative_url }}#{{ id }}">Open this measure on the STAC website</a></p>
+</body>
+</html>

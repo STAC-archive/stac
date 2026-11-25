@@ -1,0 +1,121 @@
+# =================================================================
+#  STAC – Einstellungen und Texte der Webseite
+#
+#  Hier kannst du Texte und Einstellungen ändern, ohne Code anzufassen.
+#  Regeln:
+#   - Nur den Text NACH dem Doppelpunkt ändern.
+#   - Einrückungen (Leerzeichen am Zeilenanfang) genau so lassen.
+#   - Mehrzeilige Texte stehen eingerückt unter einem "|".
+#     Darin funktionieren Links so: [Linktext](https://adresse)
+#  Nach dem Speichern ("Commit changes") ist die Webseite nach
+#  etwa 1-2 Minuten aktualisiert.
+# =================================================================
+
+title: "STAC – Scales and Tasks for Art and Creativity Assessment"
+description: "A free archive of scales and tasks for research on creativity, aesthetics, and the arts."
+
+# --- Ansichten auf der Seite "Measures" -------------------------
+# Mögliche Ansichten: folders (Ordner), list (Liste), grid (Kacheln)
+# Reihenfolge = Reihenfolge der Knöpfe
+views: [folders, list, grid]
+default_view: folders
+
+# --- Download-Zähler ---------------------------------------------
+# Name des GoatCounter-Kontos (der Teil vor .goatcounter.com).
+# Leer lassen ("") schaltet den Zähler aus.
+goatcounter: "stacarchive"
+# Bis zu welchem Datum die OSF-Downloads gezählt wurden
+# (die Zahlen selbst stehen in _data/osf_downloads.json)
+osf_date: "17 November 2026"
+
+# --- Bereiche (Reihenfolge auf der Webseite) ---------------------
+sections:
+  - Art and Aesthetics
+  - Creativity
+  - Personality and Individual Differences
+
+# --- Zitation von STAC (unten auf jeder Seite) -------------------
+citation: "Kenett, Y. N., Silvia, P. J., & Benedek, M. (2026). Scales and Tasks for Art and Creativity Assessment (STAC). Psychological Test Adaptation and Development, 7, 239-244. https://doi.org/10.1027/2698-1866/a000140"
+
+# --- Der STAC-Artikel (kleiner Kasten auf "Welcome") -------------
+article:
+  authors: "Yoed N. Kenett, Paul J. Silvia and Mathias Benedek"
+  title: "Scales and Tasks for Art and Creativity Assessment (STAC)"
+  journal: "Psychological Test Adaptation and Development"
+  volume: "7, 239-244"
+  doi: "https://doi.org/10.1027/2698-1866/a000140"
+  pdf: "STAC Paper - Kenett et al 2026 PTAD.pdf"
+
+supported: "STAC is supported by Division 10 of the American Psychological Association (Psychology of Aesthetics, Creativity, and the Arts) and the Society for the Neuroscience of Creativity."
+
+# --- Texte auf der Seite "Welcome" -------------------------------
+welcome:
+  - heading: "About this archive"
+    text: |
+      This project contains files for a wide array of tasks and self-report scales for research on creativity, aesthetics, and the arts. For a short article introducing this STAC archive see the [STAC paper](https://doi.org/10.1027/2698-1866/a000140).
+  - heading: "Free to use"
+    text: |
+      Researchers are welcome to use these tools in their own work. You do not need to request permission to use any of these scales or tools for academic and non-commercial purposes.
+
+      Inclusion of a tool does not reflect any formal endorsement or evidence of psychometric standards; people are encouraged to consult the provided references to make informed decisions.
+  - heading: "Topics and formats"
+    text: |
+      The archive focuses on creativity, aesthetics, and the arts. It contains both self-report scales (e.g., creative achievement, art knowledge, humor styles, personality traits) and lab tasks (e.g., divergent thinking, humor production, metaphor production). Some popular personality and individual differences scales are included as well.
+
+      Most tools are available in both "hard copy" formats (Word or PDF) and in formats for importing into research software. The most common e-formats are for Qualtrics (QSF format) and MediaLab (QUE format).
+  - heading: "Languages and translations"
+    text: |
+      Although most tools are in English, an increasing number of translations are being added, and demand for non-English versions is high. We invite researchers with non-English versions to contact us so we can add their tool.
+  - heading: "History"
+    text: |
+      The archive was first created in 2013 by Paul Silvia. Mathias Benedek joined as moderator in 2018. In spring 2024, the archive underwent a major update initiated by Yoed Kenett and Mathias Benedek, and implemented by the helping hands of Rosalie Andrae, Noah Meinzer, Janika Saretzki. In 2026 an article was published by Yoed Kenett, Paul Silvia and Mathias Benedek to introduce the archive and further its spotlight. With the changes on the Open Science Framework (OSF), announced in 2026, the archive moved to Github with the help of Stefanie Schranz.
+
+# --- Texte auf der Seite "Contribute" ----------------------------
+contribute:
+  - heading: "Have a tool to add?"
+    text: |
+      We welcome submissions of new scales and tasks, including translations of these tools and e-copy versions for popular lab and survey software systems. New measures should 1) be relevant to research on creativity, aesthetics and the arts, 2) be published in a peer-reviewed journal, and 3) free to be shared openly. Contact either [Paul Silvia](mailto:P_SILVIA@uncg.edu) or [Mathias Benedek](mailto:mathias.benedek@uni-graz.at) and include a copy.
+
+      Each task or scale features various components, including language versions, computerized versions, norms, and more. Additionally, every folder contains a README (markdown file), listing all relevant information. To provide context for your measure such as scoring instructions or relevant references, please also submit a readme file (see the [README template](#tpl) below for information on its typical structure and content).
+
+# --- Kontakte (unten auf "Contribute") ---------------------------
+contacts:
+  - name: "Yoed N. Kenett"
+    place: "Technion - Israel Institute of Technology"
+    email: "yoedk@technion.ac.il"
+  - name: "Paul J. Silvia"
+    place: "University of North Carolina at Greensboro"
+    email: "P_SILVIA@uncg.edu"
+  - name: "Mathias Benedek"
+    place: "University of Graz"
+    email: "mathias.benedek@uni-graz.at"
+
+# =================================================================
+#  Ab hier: technische Einstellungen. Bitte nicht ändern.
+# =================================================================
+
+# Adresse der Webseite (stac-archive.github.io/stac)
+url: "https://stac-archive.github.io"
+baseurl: "/stac"
+
+# Jede README.md in einem Instrument-Ordner wird zu einer kleinen
+# Seite, aus der die Webseite den Beschreibungstext liest.
+defaults:
+  - scope:
+      path: "Art and Aesthetics"
+    values:
+      layout: readme
+  - scope:
+      path: "Creativity"
+    values:
+      layout: readme
+  - scope:
+      path: "Personality and Individual Differences"
+    values:
+      layout: readme
+
+# Diese Dateien sind nur für GitHub gedacht, nicht für die Webseite
+exclude:
+  - README.md
+  - ANLEITUNG.md
+  - README_Template.md

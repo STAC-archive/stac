@@ -1,0 +1,27 @@
+---
+title: "SemDis"
+section: "Creativity"
+subsection: "Methods and Scoring"
+languages: [English]
+---
+
+# SemDis
+
+## Overview 
+This folder contains files related to SemDis. 
+
+## Files
+- **SemDis_English.docx**
+- **SemDis_English.pdf**
+
+## Administration and Scoring
+NA
+
+## Citation 
+If you use this measure in your published work, please cite the reference(s) below: 
+
+### SemDis_English.docx
+Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53(2), 757-780.
+
+### SemDis_English.pdf
+Beaty, R. E., & Johnson, D. R. (2021). Automating creativity assessment with SemDis: An open platform for computing semantic distance. Behavior Research Methods, 53(2), 757-780.
