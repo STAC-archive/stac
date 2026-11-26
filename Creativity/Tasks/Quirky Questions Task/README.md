@@ -1,7 +1,5 @@
 ---
 title: "Quirky Questions Task"
-section: "Creativity"
-subsection: "Tasks"
 languages: [English]
 ---
 

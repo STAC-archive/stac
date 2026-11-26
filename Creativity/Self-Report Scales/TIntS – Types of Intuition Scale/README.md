@@ -1,8 +1,6 @@
 ---
 title: "Types of Intuition Scale"
 acronym: "TIntS"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

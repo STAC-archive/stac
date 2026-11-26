@@ -1,8 +1,6 @@
 ---
 title: "Negative Creativity Measure"
 acronym: "NCM"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

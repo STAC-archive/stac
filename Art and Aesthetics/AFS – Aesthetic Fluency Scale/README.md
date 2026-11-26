@@ -1,7 +1,6 @@
 ---
 title: "Aesthetic Fluency Scale"
 acronym: "AFS"
-section: "Art and Aesthetics"
 languages: [English]
 ---
 

@@ -1,8 +1,6 @@
 ---
 title: "Emotional Creativity Inventory"
 acronym: "ECI"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English, German]
 ---
 

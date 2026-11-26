@@ -1,7 +1,5 @@
 ---
 title: "\"Be creative\" Instructions"
-section: "Creativity"
-subsection: "Methods and Scoring"
 languages: [English]
 ---
 

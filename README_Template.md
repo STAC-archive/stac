@@ -1,8 +1,6 @@
 ---
 title: "[Full name of the measure]"
 acronym: "[Acronym, or delete this line]"
-section: "[Art and Aesthetics | Creativity | Personality and Individual Differences]"
-subsection: "[Creativity only: Self-Report Scales | Tasks | Methods and Scoring, otherwise delete this line]"
 languages: [English, German]
 ---
 

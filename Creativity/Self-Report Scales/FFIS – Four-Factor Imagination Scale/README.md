@@ -1,8 +1,6 @@
 ---
 title: "Four-Factor Imagination Scale"
 acronym: "FFIS"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

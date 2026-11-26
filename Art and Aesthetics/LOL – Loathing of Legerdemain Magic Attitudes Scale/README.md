@@ -1,7 +1,6 @@
 ---
 title: "Loathing of Legerdemain Magic Attitudes Scale"
 acronym: "LOL"
-section: "Art and Aesthetics"
 languages: [English, Polish]
 ---
 

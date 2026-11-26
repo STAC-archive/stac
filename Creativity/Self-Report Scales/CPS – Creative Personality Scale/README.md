@@ -1,8 +1,6 @@
 ---
 title: "Creative Personality Scale"
 acronym: "CPS"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

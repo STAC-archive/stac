@@ -59,14 +59,18 @@ window.STAC_DATA = [
 {%- for p in readmes -%}
   {%- assign parts = p.path | split: "/" -%}
   {%- if parts.size > 2 and site.sections contains parts[0] -%}
+    {%- comment -%} Section and sub-folders come from the folder path, e.g.
+      Creativity/Tasks/Divergent Thinking/AUT – Alternate Uses Task/README.md {%- endcomment -%}
     {%- assign n = parts.size | minus: 2 -%}
     {%- assign folder = p.path | remove_first: "/README.md" -%}
+    {%- assign k = n | minus: 1 -%}
+    {%- assign groups = parts | slice: 1, k -%}
     {%- assign prefix = "/" | append: folder | append: "/" -%}
     {%- unless first %},{% endunless -%}
     {%- assign first = false %}
   {"id": {{ parts[n] | slugify: "latin" | jsonify }}, "path": {{ folder | jsonify }}, "url": {{ p.url | relative_url | jsonify }},
-   "title": {{ p.title | jsonify }}, "acronym": {{ p.acronym | jsonify }}, "section": {{ p.section | jsonify }}, "subsection": {{ p.subsection | jsonify }},
-   "languages": {{ p.languages | jsonify }}, "osf": {{ site.data.osf_downloads[folder] | default: 0 }},
+   "title": {{ p.title | jsonify }}, "acronym": {{ p.acronym | jsonify }}, "section": {{ parts[0] | jsonify }}, "groups": {{ groups | jsonify }},
+   "languages": {{ p.languages | jsonify }}, "osf": {{ site.data.osf_downloads[parts[n]] | default: 0 }},
    "text": {{ p.content | strip_html | normalize_whitespace | jsonify | replace: "</", "<\/" }},
    "files": [
     {%- assign fn = 0 -%}

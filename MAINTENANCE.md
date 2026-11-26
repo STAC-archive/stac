@@ -9,16 +9,23 @@ This guide is for everyone who looks after the STAC archive. You **don't need an
 ## 1. How the archive is organized
 
 ```
-Art and Aesthetics/
-    AFS – Aesthetic Fluency Scale/
+Art and Aesthetics/                        ← section
+    AFS – Aesthetic Fluency Scale/         ← measure (has a README.md)
         README.md          ← all information about the measure
         AFS_English.pdf    ← the files
         ...
+    Musical and Artistic Taste/            ← sub-folder (no README.md)
+        GMSI – Goldsmith Musical Sophistication Index/
 Creativity/
     Self-Report Scales/
+        Creative Self/
+            ...
     Tasks/
-        Methods & Scoring/
+        Divergent Thinking/
+            AUT – Alternate Uses Task/
 Personality and Individual Differences/
+    Curiosity/
+        ...
 
 _config.yml               ← texts and settings of the website
 assets/style.css          ← colors, fonts, spacing
@@ -28,11 +35,13 @@ _data/osf_downloads.json  ← download counts from OSF (starting values)
 
 The website reads **all READMEs automatically**. You never have to change the website itself when a measure is added.
 
+**The folders decide where a measure appears on the website.** Every folder that contains a `README.md` is a measure. All folders above it (without a README) are shown as sub-folders. You can create, rename or move sub-folders freely, with as many levels as you like; the website follows automatically. A sub-folder must not contain a `README.md`, and a measure folder must not contain another measure folder.
+
 ---
 
 ## 2. Adding a new measure
 
-1. On github.com, go to the right section, e.g. `Creativity` → `Self-Report Scales`.
+1. On github.com, go to the right section and sub-folder, e.g. `Creativity` → `Self-Report Scales` → `Creative Self`.
 2. Click **Add file** → **Upload files**.
 3. GitHub has no button for new folders. The trick: drag the **whole folder** from your computer into the window, e.g. the folder "XYZ – Example Scale" with all its files and the README inside.
 4. Click **Commit changes** at the bottom.
@@ -43,15 +52,12 @@ The website reads **all READMEs automatically**. You never have to change the we
 ---
 title: "Example Scale"
 acronym: "XYZ"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English, German]
 ---
 ```
 
 Rules for the header block:
-- `section` must be **exactly** one of these names: `Art and Aesthetics`, `Creativity`, `Personality and Individual Differences`.
-- `subsection` only for Creativity: `Self-Report Scales`, `Tasks` or `Methods and Scoring`. Otherwise delete the line.
+- Section and sub-folder are **not** written here: they come from the folder the measure is in.
 - Delete the `acronym` line if there is no acronym.
 - Put text in quotation marks `"..."`. Don't leave square brackets `[ ]` anywhere except in `languages`.
 - Don't delete the two `---` lines.
@@ -59,6 +65,10 @@ Rules for the header block:
 **Limits when uploading in the browser:** at most 100 files at once and at most 25 MB per file. For larger files, use the **GitHub Desktop** program.
 
 **Folder names:** don't use these characters, because Windows doesn't allow them: `" : * ? < > |`
+
+**The three section folders** (`Art and Aesthetics`, `Creativity`, `Personality and Individual Differences`) must keep exactly these names. To add or rename a section, also change the list `sections:` in `_config.yml`.
+
+**Moving or renaming a measure folder:** the download count from OSF is stored under the folder name in `_data/osf_downloads.json`. Moving a folder into another sub-folder is fine. If you **rename** a measure folder, also change its name there, otherwise the OSF count shows 0. Renaming also resets the new GoatCounter count, because it is stored under the web address of the measure.
 
 ---
 
@@ -101,7 +111,7 @@ Replace the color code (e.g. `#27374D`) and click **Commit changes**. You can fi
 
 ## 6. When something goes wrong
 
-- **A measure is missing on the website:** usually the header block of its README has an error, e.g. a missing quotation mark or a misspelled `section`. Compare it with the example above.
+- **A measure is missing on the website:** usually the header block of its README has an error, e.g. a missing quotation mark, or the measure folder sits directly in the top level instead of inside a section folder. Compare it with the example above.
 - **The website shows old content:** wait 2 minutes and reload the page. The **Actions** tab shows whether GitHub is rebuilding the site: a green tick means done, a red X means an error.
 - **Undoing a change:** open the file, click **History**, open the earlier version you want, and copy its content into the current file.
 

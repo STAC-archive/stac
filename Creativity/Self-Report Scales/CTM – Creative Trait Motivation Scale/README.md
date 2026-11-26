@@ -1,8 +1,6 @@
 ---
 title: "Creative Trait Motivation Scale"
 acronym: "CTM"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

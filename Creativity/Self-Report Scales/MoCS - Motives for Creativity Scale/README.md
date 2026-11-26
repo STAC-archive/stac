@@ -1,8 +1,6 @@
 ---
 title: "Motives for Creativity Scale"
 acronym: "MoCS"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English, German]
 ---
 

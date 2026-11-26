@@ -1,8 +1,6 @@
 ---
 title: "Dual Facet Imagination Scale"
 acronym: "DFIS"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English, German, Turkish]
 ---
 

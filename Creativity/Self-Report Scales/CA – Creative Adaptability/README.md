@@ -1,8 +1,6 @@
 ---
 title: "Creative Adaptability"
 acronym: "CA"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

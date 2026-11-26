@@ -1,8 +1,6 @@
 ---
 title: "Cognitive Processes Associated with Creativity"
 acronym: "CPAC"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

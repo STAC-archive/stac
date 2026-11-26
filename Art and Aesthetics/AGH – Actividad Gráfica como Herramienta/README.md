@@ -1,7 +1,6 @@
 ---
 title: "Actividad Gr\u00e1fica como Herramienta"
 acronym: "AGH"
-section: "Art and Aesthetics"
 languages: [Spanish]
 ---
 

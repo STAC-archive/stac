@@ -1,7 +1,6 @@
 ---
 title: "Bucknell Auditory Imagery Scale"
 acronym: "BAIS"
-section: "Art and Aesthetics"
 languages: [English]
 ---
 

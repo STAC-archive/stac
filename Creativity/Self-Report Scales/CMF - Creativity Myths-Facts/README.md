@@ -1,8 +1,6 @@
 ---
 title: "Creativity Myths-Facts"
 acronym: "CMF"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English, German, Japanese]
 ---
 

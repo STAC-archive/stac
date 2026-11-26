@@ -1,7 +1,7 @@
 
-/* STAC – Funktionen der Webseite.
-   Die Daten (alle READMEs) und Einstellungen kommen aus index.html,
-   das GitHub beim Veröffentlichen automatisch aus den READMEs erzeugt. */
+/* STAC – How the website works.
+   The data (all READMEs) and settings come from index.html,
+   which GitHub generates automatically from the READMEs when publishing. */
 const SITE = window.STAC_SITE;
 const DATA = window.STAC_DATA;
 
@@ -24,6 +24,7 @@ const SECTION_ORDER = SITE.sections || [];
 DATA.forEach(it => {
   it.acronym = it.acronym || "";
   it.languages = it.languages || [];
+  it.groups = it.groups || [];  /* sub-folders between section and measure, e.g. ["Tasks", "Divergent Thinking"] */
   it.text = it.text || "";
   it.files.forEach(f => { f.fmt = FMT[(f.ext || "").toLowerCase()] || "Other"; f.href = SITE.base + fileUrl(f.path); });
   it.files.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
@@ -45,7 +46,7 @@ function sectionBoxes() {
   }).join("")}</ul>`;
 }
 
-/* ---------- Reiter 1: Welcome ---------- */
+/* ---------- Tab 1: Welcome ---------- */
 function renderWelcome() {
   const a = SITE.article;
   $("#main").innerHTML = `
@@ -76,17 +77,18 @@ function renderWelcome() {
   bindSectionBoxes(true);
 }
 
-/* ---------- Reiter 2: Measures ---------- */
+/* ---------- Tab 2: Measures ---------- */
 function renderList() {
   const langs = [...allLangs].sort();
-  const subs = ["Self-Report Scales", "Tasks", "Methods and Scoring"].filter(s => DATA.some(i => i.subsection === s));
+  /* Buttons for the first level of sub-folders of the chosen section */
+  const subs = [...new Set(DATA.filter(i => i.section === state.section && i.groups.length).map(i => i.groups[0]))].sort();
   $("#main").innerHTML = `
     <header class="masthead">
       <h1 class="detail-acr" style="font-size:44px">Measures</h1>
       <p class="intro">Search or pick a section, then open a measure to read how to use it and download its files.</p>
     </header>
     ${sectionBoxes()}
-    ${state.section === "Creativity" ? `<div class="subs">${subs.map(s =>
+    ${subs.length ? `<div class="subs">${subs.map(s =>
       `<button class="sub-btn" data-sub="${esc(s)}" aria-pressed="${state.sub === s}">${esc(s)}</button>`).join("")}</div>` : ""}
     <div class="controls">
       <input class="search" id="q" type="search" placeholder="Search by name, acronym or topic" aria-label="Search" value="${esc(state.q)}">
@@ -127,7 +129,7 @@ function bindSectionBoxes(goToList) {
 }
 function matches(it) {
   if (state.section && it.section !== state.section) return false;
-  if (state.sub && it.subsection !== state.sub) return false;
+  if (state.sub && it.groups[0] !== state.sub) return false;
   if (state.lang && !it.languages.includes(state.lang)) return false;
   if (state.fmt && !it.files.some(f => f.fmt === state.fmt)) return false;
   if (state.q) {
@@ -146,13 +148,13 @@ function fillList(hits) {
   $("#list").innerHTML = hits.length ? hits.map(it => `
     <li class="row" style="--c:${COLORS[it.section]}"><a href="#${it.id}">
       <span class="name"><span class="title">${esc(it.title)}</span>${it.acronym ? ` <span class="acr">${esc(it.acronym)}</span>` : ""}</span>
-      <span class="meta">${esc([it.subsection, it.languages.join(", ")].filter(Boolean).join(", "))}</span>
+      <span class="meta">${esc([it.groups.join(" › "), it.languages.join(", ")].filter(Boolean).join(" – "))}</span>
       <span class="formats">${formatsOf(it).map(f => `<span class="fmt">${f}</span>`).join("")}</span>
     </a></li>`).join("")
     : `<li class="empty">No measures match these filters.<br><br><button class="btn secondary" id="clear2">Clear filters</button></li>`;
   if ($("#clear2")) $("#clear2").onclick = clearFilters;
 }
-/* ---------- Ordner-Ansicht (wie auf OSF) ---------- */
+/* ---------- Folder view (like on OSF) ---------- */
 const FOLDER_ICON = `<svg class="ficon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h5l2 2h8A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/></svg>`;
 function folderTree(hits, filtered) {
   const leaf = it => `<li class="leaf"><a href="#${it.id}">
@@ -162,18 +164,20 @@ function folderTree(hits, filtered) {
     <li class="folder"${color ? ` style="--c:${color}"` : ""}><details data-key="${esc(key)}"${filtered || openFolders.has(key) ? " open" : ""}>
       <summary>${FOLDER_ICON}<span class="fname">${esc(name)}</span><span class="fcount">${count}</span></summary>
       <ul>${inner}</ul></details></li>`;
-  return SITE.sections.map(sec => {
-    const inSec = hits.filter(i => i.section === sec);
-    if (sec !== "Creativity") return folder(sec, sec, inSec.length, inSec.map(leaf).join(""), COLORS[sec]);
-    const srs = inSec.filter(i => i.subsection === "Self-Report Scales");
-    const ms = inSec.filter(i => i.subsection === "Methods and Scoring");
-    const tasks = inSec.filter(i => i.subsection === "Tasks");
-    const inner =
-      folder(sec + "/Self-Report Scales", "Self-Report Scales", srs.length, srs.map(leaf).join("")) +
-      folder(sec + "/Tasks", "Tasks", tasks.length + ms.length,
-        folder(sec + "/Tasks/Methods and Scoring", "Methods and Scoring", ms.length, ms.map(leaf).join("")) + tasks.map(leaf).join(""));
-    return folder(sec, sec, inSec.length, inner, COLORS[sec]);
-  }).join("");
+  /* Build the tree from the folder path of each measure: section > sub-folders > measure */
+  const tree = { folders: {}, items: [] };
+  hits.forEach(it => {
+    let node = tree;
+    [it.section, ...it.groups].forEach(name => node = node.folders[name] = node.folders[name] || { folders: {}, items: [] });
+    node.items.push(it);
+  });
+  const total = node => node.items.length + Object.values(node.folders).reduce((n, f) => n + total(f), 0);
+  /* Sub-folders first (A to Z), then the measures */
+  const inner = (node, key) => Object.keys(node.folders).sort((a, b) => a.localeCompare(b))
+      .map(name => folder(key + "/" + name, name, total(node.folders[name]), inner(node.folders[name], key + "/" + name))).join("")
+    + node.items.map(leaf).join("");
+  return SITE.sections.filter(sec => tree.folders[sec])
+    .map(sec => folder(sec, sec, total(tree.folders[sec]), inner(tree.folders[sec], sec), COLORS[sec])).join("");
 }
 function bindFolders() {
   $("#list").querySelectorAll("details").forEach(d => d.addEventListener("toggle", () => {
@@ -182,7 +186,7 @@ function bindFolders() {
 }
 function clearFilters() { Object.assign(state, { section: null, sub: null, lang: "", fmt: "", q: "" }); renderList(); }
 
-/* ---------- Seite eines Instruments ---------- */
+/* ---------- Page of a single measure ---------- */
 function renderDetail(it) {
   const pdfLink = f => SITE.preview
     ? `<a class="btn secondary" aria-disabled="true" title="Works once the site is online">View</a>`
@@ -194,7 +198,7 @@ function renderDetail(it) {
     <a class="back" href="#measures">Back to all measures</a>
     <article style="--c:${COLORS[it.section]}">
       <div class="detail-head">
-        <p class="detail-section">${esc([it.section, it.subsection].filter(Boolean).join(", "))}</p>
+        <p class="detail-section">${esc([it.section, ...it.groups].join(" › "))}</p>
         <h1 class="detail-acr">${esc(it.acronym || it.title)}</h1>
         ${it.acronym ? `<p class="detail-title">${esc(it.title)}</p>` : ""}
         ${it.languages.length ? `<p class="detail-langs">Available in ${esc(it.languages.join(", "))}</p>` : ""}
@@ -215,7 +219,7 @@ function renderDetail(it) {
   loadReadme(it);
 }
 
-/* Text der README holen (GitHub macht aus jeder README eine kleine Seite) */
+/* Load the README text (GitHub turns every README into a small page) */
 const readmeCache = {};
 async function loadReadme(it) {
   let html = readmeCache[it.id];
@@ -236,9 +240,9 @@ async function loadReadme(it) {
   if (el && location.hash.slice(1) === it.id) el.innerHTML = html;
 }
 
-/* ---------- Download-Zähler ----------
-   Startwert = Downloads auf OSF (bis zum Umzug).
-   Dazu kommen die neuen Downloads, die GoatCounter zählt. */
+/* ---------- Download counter ----------
+   Starting value = downloads on OSF (until the move to GitHub).
+   New downloads counted by GoatCounter are added on top. */
 const counterPath = it => "download/" + it.id;
 function countDownload(it, link) {
   if (window.goatcounter && window.goatcounter.count)
@@ -250,12 +254,12 @@ async function showDownloads(it) {
   try {
     const r = await fetch(`https://${SITE.goatcounter}.goatcounter.com/counter/${encodeURIComponent(counterPath(it))}.json`);
     if (r.ok) extra = parseInt(String((await r.json()).count).replace(/\D/g, ""), 10) || 0;
-  } catch { /* Zähler nicht erreichbar: nur OSF-Wert zeigen */ }
+  } catch { /* counter not reachable: show the OSF value only */ }
   const el = $("#dlCount strong");
   if (el && location.hash.slice(1) === it.id) el.textContent = (it.osf + extra).toLocaleString("en-US");
 }
 
-/* ---------- Reiter 3: About & contact ---------- */
+/* ---------- Tab 3: Contribute ---------- */
 function renderContribute() {
   const c = SITE.contact;
   $("#main").innerHTML = `
@@ -290,7 +294,7 @@ async function loadTemplate() {
   if (el) el.textContent = text || "The template could not be loaded. Use the button below to open it.";
 }
 
-/* ---------- Welche Seite wird gezeigt? ---------- */
+/* ---------- Which page is shown? ---------- */
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
   const it = DATA.find(i => i.id === h);

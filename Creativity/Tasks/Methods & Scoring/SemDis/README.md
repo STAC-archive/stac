@@ -1,7 +1,5 @@
 ---
 title: "SemDis"
-section: "Creativity"
-subsection: "Methods and Scoring"
 languages: [English]
 ---
 

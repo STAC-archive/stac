@@ -1,8 +1,6 @@
 ---
 title: "Creative Thinking Profile"
 acronym: "CTP"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

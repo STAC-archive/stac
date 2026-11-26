@@ -1,8 +1,6 @@
 ---
 title: "Creative Self-Efficacy Scale"
 acronym: "CSES"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 

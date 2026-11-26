@@ -1,7 +1,6 @@
 ---
 title: "Product Aesthetics Inventory"
 acronym: "PAI"
-section: "Art and Aesthetics"
 languages: [English, German]
 ---
 

@@ -1,30 +1,30 @@
 
 /* =============================================================
-   STAC – Aussehen der Webseite
-   Ändern: Wert nach dem Doppelpunkt austauschen, z. B. eine andere Farbe.
-   Hier kannst du Farben, Schriften und Abstände ändern.
+   STAC – Look of the website
+   Here you can change colors, fonts and spacing.
+   To change something, replace the value after the colon, e.g. a different color.
    ============================================================= */
 :root {
-  /* Grundfarben */
-  --paper:   #F4F4F4;  /* Hintergrund der Seite */
-  --surface: #FFFFFF;  /* Hintergrund von Kästen */
-  --text:    #222222;  /* Fließtext */
-  --ink:     #27374D;  /* Überschriften, Knöpfe, aktiver Reiter */
-  --muted:   #526D82;  /* Nebentext (Sprachen, Hinweise) */
-  --accent:  #9DB2BF;  /* Linien, Rahmen, Akzente */
-  --rule:    #D3DDE3;  /* feine Trennlinien (helle Variante von #9DB2BF) */
-  --tint:    #E3EAEE;  /* Hintergrund von Formats-Etiketten und beim Darüberfahren */
+  /* Base colors */
+  --paper:   #F4F4F4;  /* page background */
+  --surface: #FFFFFF;  /* background of boxes */
+  --text:    #222222;  /* body text */
+  --ink:     #27374D;  /* headings, buttons, active tab */
+  --muted:   #526D82;  /* secondary text (languages, hints) */
+  --accent:  #9DB2BF;  /* lines, borders, accents */
+  --rule:    #D3DDE3;  /* thin dividing lines (light version of #9DB2BF) */
+  --tint:    #E3EAEE;  /* background of format labels and on hover */
 
-  /* Eine Farbe pro Bereich */
+  /* One color per section */
   --art:         #27374D;  /* Art and Aesthetics */
   --creativity:  #526D82;  /* Creativity */
   --personality: #9DB2BF;  /* Personality and Individual Differences */
 
-  /* Schriften */
-  --font-title: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;  /* Überschriften (fett) */
+  /* Fonts */
+  --font-title: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;  /* headings (bold) */
   --font-text:  "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
-  /* Maximale Breite der Seite */
+  /* Maximum page width */
   --page-width: 1120px;
 }
 
@@ -42,7 +42,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 :focus-visible { outline: 3px solid var(--muted); outline-offset: 2px; border-radius: 3px; }
 .wrap { max-width: var(--page-width); margin: 0 auto; padding: 0 24px; }
 
-/* ---------- Kopfbereich ---------- */
+/* ---------- Page header ---------- */
 .masthead { padding-top: 40px; padding-bottom: 8px; }
 .masthead a.home { text-decoration: none; display: inline-block; }
 .wordmark {
@@ -53,7 +53,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 .fullname { font: 400 20px/1.4 var(--font-title); letter-spacing: 0.12em; margin: 14px 0 0; color: var(--ink); }
 .intro { color: var(--muted); max-width: 60ch; margin: 14px 0 0; }
 
-/* ---------- Die drei Bereiche ---------- */
+/* ---------- The three section boxes ---------- */
 .sections {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
   margin: 36px 0 0; padding: 0; list-style: none;
@@ -70,7 +70,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 .section-btn .name { display: block; margin-top: 6px; font-size: 15px; line-height: 1.3; }
 .section-btn:focus-visible { outline: 3px solid var(--c); outline-offset: 3px; }
 
-/* ---------- Suche und Filter ---------- */
+/* ---------- Search and filters ---------- */
 .controls {
   display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
   margin: 22px 0 0; padding: 14px 0; border-bottom: 1px solid var(--rule);
@@ -97,7 +97,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 .view-toggle button[aria-pressed="true"] { background: var(--ink); color: #fff; }
 .linkish { all: unset; cursor: pointer; text-decoration: underline; color: var(--ink); }
 
-/* ---------- Liste der Instrumente ---------- */
+/* ---------- List of measures ---------- */
 .list { list-style: none; margin: 0; padding: 0; }
 .row a {
   display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; align-items: baseline;
@@ -113,7 +113,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 .row .meta { grid-column: 1; color: var(--muted); font-size: 14px; }
 .row .formats { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; max-width: 260px; }
 .fmt { font-size: 12.5px; padding: 2px 8px; border-radius: 3px; background: var(--tint); color: var(--ink); white-space: nowrap; }
-/* ---------- Ordner-Ansicht ---------- */
+/* ---------- Folder view ---------- */
 .list.folders { margin-top: 8px; border-top: 1px solid var(--rule); }
 .list.folders ul { list-style: none; margin: 0; padding: 0 0 0 26px; }
 .list.folders .folder { border-bottom: 1px solid var(--rule); }
@@ -147,7 +147,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
   .list.folders .leaf a { padding-left: 22px; }
 }
 
-/* ---------- Kachel-Ansicht (Version 2) ---------- */
+/* ---------- Tile view ---------- */
 .list.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
 .list.grid .row a {
   display: flex; flex-direction: column; gap: 6px; height: 100%; min-height: 210px;
@@ -168,7 +168,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 }
 .empty { padding: 48px 0; text-align: center; color: var(--muted); }
 
-/* ---------- Seite eines Instruments ---------- */
+/* ---------- Page of a single measure ---------- */
 .back { display: inline-block; margin: 8px 0 24px; color: var(--muted); }
 .detail-head { border-top: 6px solid var(--c); padding-top: 18px; }
 .detail-section { color: var(--muted); font-weight: 600; font-size: 15px; margin: 0; }
@@ -199,7 +199,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
 .github { display: block; margin-top: 14px; font-size: 14px; color: var(--muted); }
 
-/* ---------- Fußbereich ---------- */
+/* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--rule); padding-top: 28px; padding-bottom: 48px; margin-top: 40px; color: var(--muted); font-size: 14px; }
 .footer h2 { font: 700 18px var(--font-title); color: var(--ink); margin: 0 0 6px; }
 .footer p { max-width: 75ch; margin: 0 0 10px; }
@@ -207,7 +207,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 
 .preview-note { background: var(--tint); border-bottom: 1px solid var(--accent); font-size: 14px; padding: 8px 0; }
 
-/* ---------- Handy ---------- */
+/* ---------- Phones (narrow screens) ---------- */
 @media (max-width: 760px) {
   .sections { grid-template-columns: 1fr; }
   .section-btn { display: flex; align-items: baseline; gap: 12px; }
@@ -221,7 +221,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 
-/* ---------- Reiter (Navigation oben) ---------- */
+/* ---------- Tabs (top navigation) ---------- */
 .topbar { border-bottom: 1px solid var(--rule); background: var(--paper); }
 .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 18px; padding-bottom: 18px; }
 .topbar .brand { text-decoration: none; font-family: var(--font-title); line-height: 1.25; }
@@ -232,7 +232,7 @@ h1, h2, h3, .wordmark, .topbar .brand, .section-btn .count { color: var(--ink); 
 .tabs a:hover { color: var(--ink); border-bottom-color: var(--accent); }
 .tabs a[aria-current="page"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--ink); }
 
-/* ---------- Willkommensseite ---------- */
+/* ---------- Welcome page ---------- */
 .hero { padding: 64px 0 40px; }
 .hero .lead { font-size: 19px; max-width: 58ch; margin: 18px 0 0; }
 .hero .facts { color: var(--muted); margin: 10px 0 0; }
@@ -255,7 +255,7 @@ h2.page-h { font: 700 30px/1.2 var(--font-title); margin: 56px 0 8px; }
 .article-strip p { margin: 0; flex: 1 1 420px; }
 .article-strip .actions { display: flex; gap: 8px; }
 
-/* ---------- About & Contact ---------- */
+/* ---------- Contribute page ---------- */
 .about { max-width: 760px; padding-bottom: 40px; }
 .about h1 { font: 700 44px/1.1 var(--font-title); margin: 48px 0 12px; }
 .about h2 { font: 700 26px/1.25 var(--font-title); margin: 48px 0 10px; }

@@ -1,8 +1,6 @@
 ---
 title: "Mode Shifting Index"
 acronym: "MSI"
-section: "Creativity"
-subsection: "Self-Report Scales"
 languages: [English]
 ---
 
