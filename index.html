@@ -64,6 +64,7 @@ window.STAC_DATA = [
       Creativity/Tasks/Divergent Thinking/AUT – Alternate Uses Task/README.md {%- endcomment -%}
     {%- assign n = parts.size | minus: 2 -%}
     {%- assign folder = p.path | remove_first: "/README.md" -%}
+    {%- assign measure = parts[n] -%}
     {%- assign k = n | minus: 1 -%}
     {%- assign groups = parts | slice: 1, k -%}
     {%- assign prefix = "/" | append: folder | append: "/" -%}
@@ -71,7 +72,7 @@ window.STAC_DATA = [
     {%- assign first = false %}
   {"id": {{ parts[n] | slugify: "latin" | jsonify }}, "path": {{ folder | jsonify }}, "url": {{ p.url | relative_url | jsonify }},
    "title": {{ p.title | jsonify }}, "acronym": {{ p.acronym | jsonify }}, "section": {{ parts[0] | jsonify }}, "groups": {{ groups | jsonify }},
-   "languages": {{ p.languages | jsonify }}, "osf": {{ site.data.osf_downloads[parts[n]] | default: 0 }},
+   "languages": {{ p.languages | jsonify }}, "osf": {{ site.data.osf_downloads[measure] | default: 0 }},
    "text": {{ p.content | strip_html | normalize_whitespace | jsonify | replace: "</", "<\/" }},
    "files": [
     {%- assign fn = 0 -%}
