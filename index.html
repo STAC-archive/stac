@@ -13,7 +13,8 @@ layout: null
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ site.title }}</title>
 <meta name="description" content="{{ site.description }}">
-<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+{%- comment -%} ?v=... makes browsers load the newest version after every update {%- endcomment %}
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
 
@@ -85,6 +86,6 @@ window.STAC_DATA = [
 {%- endfor %}
 ];
 </script>
-<script src="{{ '/assets/app.js' | relative_url }}"></script>
+<script src="{{ '/assets/app.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 </body>
 </html>
